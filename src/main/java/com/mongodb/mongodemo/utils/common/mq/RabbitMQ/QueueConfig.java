@@ -29,6 +29,7 @@ public class QueueConfig {
          * headers：该类型不依赖于routing key与binding key的匹配规则来路由消息，而是根据发送的消息内容中的headers属性进行匹配
          */
         map.put("x-delayed-type","direct");
+        map.put("x-queue-mode","lazy");
         return new CustomExchange("test_exchange","x-delayed-message",true,false,map);
     }
 
@@ -41,6 +42,11 @@ public class QueueConfig {
         Queue queue = new Queue("test_queue_1",true);
         return queue;
     }
+    @Bean
+    public Queue queue1(){
+        Queue queue = new Queue("test_queue_2",true);
+        return queue;
+    }
 
     /**
      * 绑定
@@ -48,6 +54,13 @@ public class QueueConfig {
      */
     @Bean
     public Binding binding(){
+
         return BindingBuilder.bind(queue()).to(Exchange()).with("test_queue_1").noargs();
     }
+    @Bean
+    public Binding binding1(){
+
+        return BindingBuilder.bind(queue1()).to(Exchange()).with("test_queue_2").noargs();
+    }
+
 }

@@ -17,13 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceTest extends SuperNormal{
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private MessageSendServiceImpl messageService;
 
     @Test
     public void send() {
-        messageService.sendMsg("test_queue_1", "hello i am delay msg");
+        for(int i= 0 ;i<100;i++){
+            messageService.sendMsg("test_queue_1", "hello i am delay msg"+i);
+            messageService.sendMsg("test_queue_2", "hello i am delay msg"+i);
+        }
+
 
     }
 }

@@ -14,12 +14,12 @@ import java.util.Date;
  * @Version 1.0
  **/
 @Component
-public class MessageReceiver {
+public class Message1Receiver {
     @RabbitListener(queues = "test_queue_1")
     @RabbitHandler
     public void receive(String msg){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("消息接收时间:"+sdf.format(new Date()));
-        System.out.println("接收到的消息1:"+msg);
+        System.out.println("接收到的消息2:"+msg);
     }
 }
