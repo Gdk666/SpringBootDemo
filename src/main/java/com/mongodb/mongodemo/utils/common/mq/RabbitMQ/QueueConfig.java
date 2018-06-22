@@ -40,6 +40,7 @@ public class QueueConfig {
     @Bean
     public Queue queue(){
         Queue queue = new Queue("test_queue_1",true);
+
         return queue;
     }
     @Bean
