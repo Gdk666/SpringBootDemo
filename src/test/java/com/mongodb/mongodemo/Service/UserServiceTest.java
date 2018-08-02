@@ -5,6 +5,8 @@ import com.mongodb.mongodemo.utils.SuperNormal;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 public class UserServiceTest extends SuperNormal{
+    private static Logger LOGGER = LoggerFactory.getLogger(UserServiceTest.class);
 
     @Autowired
     private MessageSendServiceImpl messageService;
@@ -25,7 +28,6 @@ public class UserServiceTest extends SuperNormal{
             messageService.sendMsg("test_queue_1", "hello i am delay msg"+i);
             messageService.sendMsg("test_queue_2", "hello i am delay msg"+i);
         }
-
 
     }
 }

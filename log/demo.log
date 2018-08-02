@@ -1,8 +1,5 @@
-2018-06-21 13:39:40,802 INFO (StartupInfoLogger.java:50)- Starting UserServiceTest on TYZ047-PC with PID 13688 (started by 1 in D:\deployproject\SpringBootDemo)
-2018-06-21 13:39:40,810 DEBUG (StartupInfoLogger.java:53)- Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-2018-06-21 13:39:40,816 INFO (SpringApplication.java:652)- No active profile set, falling back to default profiles: default
-2018-06-21 13:39:55,082 INFO (StartupInfoLogger.java:59)- Started UserServiceTest in 17.853 seconds (JVM running for 19.747)
-2018-06-21 13:43:51,603 INFO (StartupInfoLogger.java:50)- Starting UserServiceTest on TYZ047-PC with PID 27864 (started by 1 in D:\deployproject\SpringBootDemo)
-2018-06-21 13:43:51,604 DEBUG (StartupInfoLogger.java:53)- Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-2018-06-21 13:43:51,606 INFO (SpringApplication.java:652)- No active profile set, falling back to default profiles: default
-2018-06-21 13:43:58,804 INFO (StartupInfoLogger.java:59)- Started UserServiceTest in 8.437 seconds (JVM running for 9.403)
+2018-08-01 10:32:48,225 DEBUG [restartedMain] o.s.w.s.resource.ResourceUrlProvider [ResourceUrlProvider.java : 143] Looking for resource handler mappings
+2018-08-01 10:32:48,230 DEBUG [restartedMain] o.s.w.s.resource.ResourceUrlProvider [ResourceUrlProvider.java : 155] Found resource handler mapping: URL pattern="/**/favicon.ico", locations=[class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@5ec339fd]
+2018-08-01 10:32:48,231 DEBUG [restartedMain] o.s.w.s.resource.ResourceUrlProvider [ResourceUrlProvider.java : 155] Found resource handler mapping: URL pattern="/webjars/**", locations=[class path resource [META-INF/resources/webjars/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@16bd03e9]
+2018-08-01 10:32:48,231 DEBUG [restartedMain] o.s.w.s.resource.ResourceUrlProvider [ResourceUrlProvider.java : 155] Found resource handler mapping: URL pattern="/**", locations=[class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@28286278]
+2018-08-01 10:32:48,260 DEBUG [restartedMain] o.s.w.c.s.StandardServletEnvironment [MutablePropertySources.java : 98] Adding PropertySource 'server.ports' with highest search precedence

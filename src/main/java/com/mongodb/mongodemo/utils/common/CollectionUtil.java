@@ -15,8 +15,9 @@ public class CollectionUtil {
 	 * @return
 	 */
 	public static String join(Collection<?> ls, String split){
-		if(split == null)
+		if(split == null) {
 			split = ";";
+		}
 		StringBuffer sb = new StringBuffer();
 		for(Object obj : ls){
 			if(StringUtils.isTrimEmpty(obj)){

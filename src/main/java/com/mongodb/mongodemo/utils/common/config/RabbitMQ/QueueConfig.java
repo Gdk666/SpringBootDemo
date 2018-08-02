@@ -1,4 +1,4 @@
-package com.mongodb.mongodemo.utils.common.mq.RabbitMQ;
+package com.mongodb.mongodemo.utils.common.config.RabbitMQ;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;

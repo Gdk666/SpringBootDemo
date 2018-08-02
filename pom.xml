@@ -55,10 +55,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Spring Boot Freemarker 依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Spring Boot thymeleaf 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<!--热启动：每自修改后， 程序自动启动spring Application上下文。 -->
 		<dependency>
@@ -81,6 +86,11 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<!-- Spring JDBC 的依赖包，使用 spring-boot-starter-jdbc 或 spring-boot-starter-data-jpa 将会自动获得HikariCP依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<!--durid-->
 		<dependency>
@@ -135,6 +145,7 @@
 			<artifactId>spring-boot-starter-redis</artifactId>
 			<version>${spring-boot-starter-redis-version}</version>
 		</dependency>
+
 		<!--httpclient-->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -152,6 +163,12 @@
 			<artifactId>hessian</artifactId>
 			<version>${hessian.version}</version>
 		</dependency>
+		<!--activiti6.0-->
+		<!--<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring-boot-starter-basic</artifactId>
+			<version>6.0.0</version>
+		</dependency>-->
 	</dependencies>
 
 	<build>

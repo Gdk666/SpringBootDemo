@@ -28,17 +28,13 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 0
-## freeMarker 配置
-  freemarker:
-    template-loader-path: classpath:/templates/
+## thymeleaf 配置
+  thymeleaf:
     cache: false
-    charset: UTF-8
-    check-template-location: true
-    content-type: text/html
-    expose-request-attributes: true
-    expose-session-attributes: true
-    request-context-attribute: request
-    suffix: .ftl
+    suffix: .html
+    encoding: UTF-8
+    prefix: classpath:/templates/
+
 ## RabbitMq 配置
   rabbitmq:
     host: 127.0.0.1
@@ -48,18 +44,31 @@ spring:
     listener:
       simple:
         concurrency: 5
+## 缓存设置
+  cache:
+    type: redis
+
+## Activiti
+##  activiti:
+##        check-process-definitions: false
 
 
 server:
   port: 8900
   servlet:
-    context-path:
+    context-path: /dev
 #公共配置与profiles选择无关
 mybatis:
   typeAliasesPackage: com.mongodb.mongodemo.model
   mapper-locations: classpath:mapper/*.xml
 logging:
   config: classpath:springboot-log.xml
+  level:
+    root: warn
+    org.springframework.web: DEBUG
+##mybatis sql日志
+    org.mybatis: INFO
+    mapper: DEBUG
 
 
 

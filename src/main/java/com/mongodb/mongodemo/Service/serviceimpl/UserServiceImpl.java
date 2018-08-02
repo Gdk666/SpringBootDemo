@@ -11,10 +11,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 
-@SuppressWarnings("serial")
+@SuppressWarnings("all")
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 
@@ -23,18 +25,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public UserServiceImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Autowired
     private UserDao userDao;
 
     @Override
     public List<User> findAll() {
-        return userDao.findAll();
+        String sql = "select * from user";
+        return jdbcTemplate.query(sql,new Object[]{},new BeanPropertyRowMapper<>(User.class));
     }
 
     @Override
     public User getUser(Integer id) {
-
-        return userDao.selectByPrimaryKey(id);
+        String sql = "select * from user where id = ?";
+        return jdbcTemplate.queryForObject(sql,new Object[]{id},new BeanPropertyRowMapper<>(User.class));
     }
 
     @Override
