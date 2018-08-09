@@ -2,6 +2,7 @@ package com.mongodb.mongodemo.Dao;
 
 import java.util.List;
 import com.mongodb.mongodemo.model.User;
+import com.mongodb.mongodemo.utils.common.config.BaseDao;
 import org.springframework.data.domain.Pageable;
 
 
@@ -9,20 +10,19 @@ import org.springframework.data.domain.Pageable;
  * userDao接口定义
  *
  */
-public interface UserDao {
+
+public interface UserDao extends BaseDao<User> {
 
     List<User> findAll();
 
-    User selectByPrimaryKey(Integer id);
-
-    void update(User user);
-
-    void insert(User user);
-
-    void insertAll(List<User> users);
-
-    void remove(Integer id);
-
     List<User> findByPage(User user, Pageable pageable);
+
+    /**
+     * 根据用户名统计（TODO 假设它是一个很复杂的SQL）
+     *
+     * @param userName 用户名
+     * @return 统计结果
+     */
+    int countByUsername(String userName);
 
 }

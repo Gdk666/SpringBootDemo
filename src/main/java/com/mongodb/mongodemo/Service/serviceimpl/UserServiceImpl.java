@@ -6,7 +6,10 @@ import java.util.concurrent.TimeUnit;
 import com.mongodb.mongodemo.Dao.UserDao;
 import com.mongodb.mongodemo.Service.UserService;
 import com.mongodb.mongodemo.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Service;
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired
@@ -42,14 +46,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "user",key = "'user_'+#id")
     public User getUser(Integer id) {
+        System.out.println("进入getUser方法");
         String sql = "select * from user where id = ?";
         return jdbcTemplate.queryForObject(sql,new Object[]{id},new BeanPropertyRowMapper<>(User.class));
     }
 
     @Override
     public void update(User user) {
-        userDao.update(user);
+
     }
 
     @Override
@@ -59,12 +65,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertAll(List<User> users) {
-        userDao.insertAll(users);
+
     }
 
     @Override
     public void remove(Integer id) {
-        userDao.remove(id);
+
     }
 
     @Override
@@ -73,6 +79,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable
     public User findUserById(int id) {
         //从缓存中获取用户信息
         String key = "user_"+id;
@@ -84,9 +91,8 @@ public class UserServiceImpl implements UserService {
             return  user;
         }
         //从数据库中获取信息
-        User user = userDao.selectByPrimaryKey(id);
+        User user = this.getUser(id);
         operations.set(key,user,10, TimeUnit.SECONDS);
-        System.out.println(user.getUserName()+key);
         return user;
     }
 

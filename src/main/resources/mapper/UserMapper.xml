@@ -10,23 +10,23 @@
     <sql id="Base_Column_List" >
         id, userName, password, age
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
         from user
         where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    </select>-->
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from user_t
         where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.mongodb.mongodemo.model.User" >
+    </delete>-->
+    <!--<insert id="insert" parameterType="com.mongodb.mongodemo.model.User" >
         insert into user (id, userName, password,
         age)
         values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
         #{age,jdbcType=INTEGER})
-    </insert>
-    <insert id="insertSelective" parameterType="com.mongodb.mongodemo.model.User" >
+    </insert>-->
+    <!--<insert id="insertSelective" parameterType="com.mongodb.mongodemo.model.User" >
         insert into user_t
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -56,8 +56,8 @@
                 #{age,jdbcType=INTEGER},
             </if>
         </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.mongodb.mongodemo.model.User" >
+    </insert>-->
+    <!--<update id="updateByPrimaryKeySelective" parameterType="com.mongodb.mongodemo.model.User" >
         update user_t
         <set >
             <if test="userName != null" >
@@ -71,12 +71,9 @@
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.mongodb.mongodemo.model.User" >
-        update user_t
-        set user_name = #{userName,jdbcType=VARCHAR},
-        password = #{password,jdbcType=VARCHAR},
-        age = #{age,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
+    </update>-->
+
+    <select id="countByUsername" resultType="java.lang.Integer">
+        SELECT count(1) FROM user WHERE userName = #{userName}
+    </select>
 </mapper>

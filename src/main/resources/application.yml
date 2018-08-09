@@ -27,7 +27,7 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
-    timeout: 0
+
 ## thymeleaf 配置
   thymeleaf:
     cache: false
@@ -61,6 +61,15 @@ server:
 mybatis:
   typeAliasesPackage: com.mongodb.mongodemo.model
   mapper-locations: classpath:mapper/*.xml
+# 驼峰命名规范 如：数据库字段是  order_id 那么 实体字段就要写成 orderId
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    aggressive-lazy-loading: true
+    jdbc-type-for-null: other
+##通用Mapper
+# 主键自增回写方法,默认值MYSQL
+
 logging:
   config: classpath:springboot-log.xml
   level:
@@ -69,6 +78,26 @@ logging:
 ##mybatis sql日志
     org.mybatis: INFO
     mapper: DEBUG
+##通用Mapper
+# 主键自增回写方法,默认值MYSQL
+mapper:
+  identity: MYSQL
+  mappers: com.mongodb.mongodemo.utils.common.config.BaseDao
+  # 设置 insert 和 update 中，是否判断字符串类型!=''
+  not-empty: true
+  enum-as-simple-type: true
+########## 分页插件 ##########
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params:
+        count: countSql
+
+
+
+
+
 
 
 

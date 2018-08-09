@@ -2,18 +2,26 @@ package com.mongodb.mongodemo.model;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
 /**
  * user 实体类
  *
  */
+@Table(name = "user")
+@NameStyle(Style.normal)
 public class User implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String userName;
@@ -22,12 +30,6 @@ public class User implements Serializable {
 
     private Integer age;
 
-    public User(Integer id, String userName, String password, Integer age) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.age = age;
-    }
 
     public User(Integer id, String userName, Integer age) {
         this.id = id;
@@ -70,6 +72,7 @@ public class User implements Serializable {
         this.age = age;
     }
 
+    @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", age=" + age + "]";
     }
