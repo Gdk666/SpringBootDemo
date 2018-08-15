@@ -39,8 +39,8 @@
         <appender-ref ref="file" />
     </root>
 
-    <logger name="com.mongodb.mongodemo.Controller"/>
-    <logger name="com.mongodb.mongodemo.Service.UserServiceTest" level="INFO" additivity="false">
+    <logger name="com.Guoz.Controller"/>
+    <logger name="UserServiceTest" level="INFO" additivity="false">
         <appender-ref ref="console" />
     </logger>
 
