@@ -1,6 +1,8 @@
 package com.Guoz.model;
 
 import java.io.Serializable;
+
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import tk.mybatis.mapper.annotation.NameStyle;
 import tk.mybatis.mapper.code.Style;
@@ -9,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 /**
  * user 实体类

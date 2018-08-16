@@ -31,9 +31,9 @@ public class SpringTaskDemo {
         System.out.println("scheduled2 每1秒执行一次："+LocalDateTime.now());
     }*/
 
-    @Scheduled(fixedDelay = 3000)
+    /*@Scheduled(fixedDelay = 3000)
     public void scheduled3() throws InterruptedException{
         Thread.sleep(3000);
         System.out.println("scheduled3 每3秒执行一次："+LocalDateTime.now());
-    }
+    }*/
 }

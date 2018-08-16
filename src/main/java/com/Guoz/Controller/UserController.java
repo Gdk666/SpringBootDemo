@@ -6,13 +6,16 @@ import com.Guoz.Component.MyProperties1;
 import com.Guoz.utils.Exception.*;
 import com.Guoz.Service.UserService;
 import com.Guoz.model.User;
+import com.Guoz.utils.annotation.DateTime;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.validator.constraints.Length;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -38,6 +43,7 @@ import javax.servlet.http.HttpServletRequest;
     @ApiResponses： 描述多个出参信息
     @ApiError： 接口错误所返回的信息
  */
+@Validated
 @RestController
 @RequestMapping("/user")
 @Api("user相关Api")
@@ -83,9 +89,19 @@ public class UserController {
     }
 
     @RequestMapping("/add")
-    public String insert() {
-        User user =new User(16, ""+16, 16);
+    public String insert(@NotBlank(message = "userName不为空" )@Length(min = 2, max = 10, message = "userName 长度必须在 {min} - {max} 之间")String userName) {
+        User user =new User(16, "", 16);
         userService.insert(user);
+        return "success";
+    }
+
+    @GetMapping("/test2")
+    public String test2(@NotNull(message = "userName 不能为空") @Length(min = 2, max = 10, message = "nuserName 长度必须在 {min} - {max} 之间") String userName) {
+        return "success";
+    }
+
+    @GetMapping("/test3")
+    public String test3(@DateTime(message = "格式错误啦，正确{format}",format="yyyy-MM-dd HH:mm") String data) {
         return "success";
     }
 
