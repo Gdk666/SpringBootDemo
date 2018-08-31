@@ -1,4 +1,4 @@
-package com.Guoz.utils.Exception;
+package com.guoz.framework.commons.Exception;
 
 public class AppException extends RuntimeException {
 

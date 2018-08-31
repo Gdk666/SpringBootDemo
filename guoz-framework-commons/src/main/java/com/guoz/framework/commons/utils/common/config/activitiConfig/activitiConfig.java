@@ -1,4 +1,4 @@
-/*
+package com.guoz.framework.commons.utils.common.config.activitiConfig;/*
 package com.Guoz.utils.common.config.activitiConfig;
 
 import org.activiti.engine.*;
@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 */
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 10:58
  * @Version 1.0
  **//*

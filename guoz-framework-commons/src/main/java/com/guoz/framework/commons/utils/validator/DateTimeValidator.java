@@ -1,6 +1,8 @@
-package com.Guoz.utils.validator;
+package com.guoz.framework.commons.utils.validator;
 
-import com.Guoz.utils.annotation.DateTime;
+
+import com.guoz.framework.commons.annotation.DateTime;
+
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -9,7 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 14:59
  * @Version 1.0
  **/

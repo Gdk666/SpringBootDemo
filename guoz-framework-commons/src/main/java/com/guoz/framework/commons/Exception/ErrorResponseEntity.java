@@ -1,7 +1,7 @@
-package com.Guoz.utils.Exception;
+package com.guoz.framework.commons.Exception;
 
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 14:01
  * @Version 1.0
  * 定义返回的异常信息格式，这样异常信息风格更为统一

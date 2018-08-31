@@ -1,8 +1,8 @@
-package com.Guoz.utils.common;
+package com.guoz.framework.commons.utils.common;
 
 
-import com.Guoz.utils.Exception.AppException;
-import com.Guoz.utils.Exception.*;
+
+import com.guoz.framework.commons.Exception.AppException;
 
 import java.net.URLEncoder;
 import java.util.Collection;

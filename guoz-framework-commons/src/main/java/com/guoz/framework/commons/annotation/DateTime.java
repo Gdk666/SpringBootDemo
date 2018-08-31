@@ -1,7 +1,8 @@
-package com.Guoz.utils.annotation;
+package com.guoz.framework.commons.annotation;
 
 
-import com.Guoz.utils.validator.DateTimeValidator;
+
+import com.guoz.framework.commons.utils.validator.DateTimeValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

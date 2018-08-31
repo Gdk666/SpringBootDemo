@@ -1,4 +1,4 @@
-package com.Guoz.utils.common;
+package com.guoz.framework.commons.utils.common;
 
 import java.util.Collection;
 

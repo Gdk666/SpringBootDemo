@@ -1,7 +1,7 @@
-package com.Guoz.utils.common.config;
+package com.guoz.framework.commons.utils.common.config;
 
-import com.Guoz.utils.Exception.CustomException;
-import com.Guoz.utils.Exception.ErrorResponseEntity;
+import com.guoz.framework.commons.Exception.CustomException;
+import com.guoz.framework.commons.Exception.ErrorResponseEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import com.Guoz.utils.Exception.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 14:09
  * @Version 1.0
  **/
@@ -33,10 +33,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * @return 响应结果
      */
     @ExceptionHandler(CustomException.class)
-    public ErrorResponseEntity customExceptionHandler(HttpServletRequest request, final Exception e, HttpServletResponse response){
+    public ErrorResponseEntity customExceptionHandler(HttpServletRequest request, final Exception e, HttpServletResponse response) {
         response.setStatus(HttpStatus.BAD_REQUEST.value());
         CustomException exception = (CustomException) e;
-        return new ErrorResponseEntity(exception.getCode(),exception.getMessage());
+        return new ErrorResponseEntity(exception.getCode(), exception.getMessage());
     }
 
     /**
@@ -55,6 +55,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         RuntimeException exception = (RuntimeException) e;
         return new ErrorResponseEntity(400, exception.getMessage());
     }
+
+
 
     /**
      * 通用的接口映射异常处理方

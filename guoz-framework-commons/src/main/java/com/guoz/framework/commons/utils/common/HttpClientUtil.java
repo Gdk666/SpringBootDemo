@@ -1,6 +1,7 @@
-package com.Guoz.utils.common;
+package com.guoz.framework.commons.utils.common;
 
-import com.Guoz.utils.Exception.AppException;
+
+import com.guoz.framework.commons.Exception.AppException;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -12,7 +13,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import com.Guoz.utils.Exception.*;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;

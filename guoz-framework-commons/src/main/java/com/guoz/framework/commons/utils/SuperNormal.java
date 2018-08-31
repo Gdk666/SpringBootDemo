@@ -1,11 +1,9 @@
-package com.Guoz.utils;
+package com.guoz.framework.commons.utils;
 
 
-import com.Guoz.utils.Exception.AppException;
-import com.Guoz.utils.common.StringUtils;
-import com.alibaba.fastjson.JSONObject;
 
-import com.Guoz.utils.Exception.*;
+import com.guoz.framework.commons.Exception.AppException;
+import com.guoz.framework.commons.utils.common.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,20 +64,6 @@ public class SuperNormal {
 			return ((T) ((String) obj).trim());
 		}
 		return obj;
-	}
-
-	/**
-	 * 检查json参数对象的值是否为空
-	 * 
-	 * @param paramsJson
-	 * @param params
-	 * @return
-	 */
-	public void checkParamByJson(JSONObject paramsJson, String... params) {
-		checkNotEmpty(paramsJson, "params is null");
-		for (String param : params) {
-			checkNotEmpty(paramsJson.get(param), format("%s must not null", param));
-		}
 	}
 
 	/**

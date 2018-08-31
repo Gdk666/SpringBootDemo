@@ -1,4 +1,4 @@
-package com.Guoz.utils.common.config.RabbitMQ;
+package com.guoz.framework.commons.utils.common.config.RabbitMQ;
 
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 11:17
  * @Version 1.0
  **/

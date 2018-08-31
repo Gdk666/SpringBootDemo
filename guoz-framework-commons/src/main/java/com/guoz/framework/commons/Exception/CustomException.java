@@ -1,7 +1,7 @@
-package com.Guoz.utils.Exception;
+package com.guoz.framework.commons.Exception;
 
 /**
- * @ClassName Guoz
+ * @description:
  * @Data 13:57
  * @Version 1.0
  **/
