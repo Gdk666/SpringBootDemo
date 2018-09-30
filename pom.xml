@@ -16,6 +16,30 @@
 
 	<name>Guoz</name>
 	<description>采用JDK8、SpringBoot</description>
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>local private nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>public</id>
+			<name>local private nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<!--配置maven阿里云结束-->
 
 	<modules>
 		<module>guoz-management</module>
@@ -25,8 +49,8 @@
 	</modules>
 
 	<properties>
+		<ydt.framework.version>3.0.1</ydt.framework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<mybatis-plugin.version>1.1.0</mybatis-plugin.version>
 		<mybatis-spring-boot.version>1.1.1</mybatis-spring-boot.version>
@@ -40,6 +64,16 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.39</version>
+			</dependency>
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>2.6.1</version>
+			</dependency>
 			<!--commons start -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -50,6 +84,18 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.2.3</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+			<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.2.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -71,27 +117,6 @@
 				<artifactId>httpcore</artifactId>
 				<version>${httpcore.version}</version>
 			</dependency>
-			<!--热启动：每自修改后， 程序自动启动spring Application上下文。 -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-devtools</artifactId>
-				<optional>true</optional>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-logging</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>1.16.10</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter</artifactId>
-			</dependency>
-
 
 		</dependencies>
 	</dependencyManagement>

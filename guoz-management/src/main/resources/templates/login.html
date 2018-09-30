@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<title>battcn-plus - 登录</title>
+<title>登录</title>
 <link href="http://static.battcn.com/back/css/bootstrap.min.css?v=3.3.5"	rel="stylesheet" />
 <link href="http://static.battcn.com/back/css/font-awesome.min.css?v=4.4.0"	rel="stylesheet" />
 <link href="http://static.battcn.com/back/css/animate.min.css" rel="stylesheet" />
@@ -19,6 +19,24 @@
 		window.top.location = window.location
 	};
 	$(function() {
+		/*layer.msg("如果数据有误,请点击初始化系统");*/
+		install = function() {
+			$.ajax({  
+	            type: "GET",  
+	            dataType: "JSON",  
+	            url: "/install",  
+	            beforeSend: function () {  
+	            	$("#loginForm button").attr("disabled",true);
+	            },
+	            complete:function(){
+	            	$("#loginForm button").attr("disabled",false);
+	            },
+	            success: function (data) {
+	            	if(data.messageId == 200)
+						layer.msg(data.message);
+	            }
+	        });  
+		}
 	})
 </script>
 </head>
@@ -29,11 +47,11 @@
 			<div class="col-sm-7">
 				<div class="signin-info">
 					<div class="logopanel m-b">
-						<h1>[ Hello ]</h1>
+						<h1>[ 123 ]</h1>
 					</div>
 					<div class="m-b"></div>
 					<h4>
-						Hello <strong> </strong>
+						欢迎使用
 					</h4>
 					<strong>还没有账号？ <a href="javascript:void(0);">立即注册&raquo;</a></strong>
 				</div>
@@ -44,17 +62,13 @@
 					<input type="text" class="form-control uname" name="account"
 						value="admin" placeholder="用户名" /> <input type="password"
 						class="form-control pword m-b" name="password" value="123456"
-						placeholder="密码" />
+						placeholder="密码" /> <!--<a onclick="javascript:install();">初始化系统</a>-->
 					<p style="font-size: 12px; color: red;" th:if="${msg != null}"
 						th:text="${msg}"></p>
 					<button class="btn btn-success btn-block">登录</button>
 				</form>
 			</div>
 		</div>
-		<div class="signup-footer">
-			<div class="pull-left">&copy; 2018</div>
-		</div>
 	</div>
 </body>
-
 </html>

@@ -22,6 +22,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -78,6 +84,7 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+		<!--ehcache 插件-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-ehcache</artifactId>
@@ -106,6 +113,7 @@
 			<artifactId>easypoi-annotation</artifactId>
 			<version>3.0.3</version>
 		</dependency>
+
 		<!-- poi end-->
 
 		<!--junit-->
@@ -124,10 +132,21 @@
 			<artifactId>junit</artifactId>
 			<version> 4.12</version>
 		</dependency>
+		<!--热启动：每自修改后， 程序自动启动spring Application上下文。 -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.10</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+		<!--redis缓存使用-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -150,7 +169,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.guoz.guozmanagement.GuozManagementApplication</mainClass>
+					<mainClass>Guoz.MongodemoApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

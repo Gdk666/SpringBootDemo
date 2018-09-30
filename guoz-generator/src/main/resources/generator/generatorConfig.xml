@@ -44,7 +44,7 @@
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 			<property name="constructorBased" value="false" />
-			<property name="rootClass" value="com.battcn.platform.pojo.RecordEntity" />
+			<property name="rootClass" value="com.guoz.generator.pojo.RecordEntity" />
 			<property name="useActualColumnNames" value="true"/>
 		</javaModelGenerator>
 
@@ -57,13 +57,11 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="t_hello" domainObjectName="Hello" 
+		<table tableName="t_hello" domainObjectName="Hello"
 			enableCountByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		
-		
-		
+
 		
 		
 		<!-- <table tableName="t_sys_%log" domainObjectName="Log" 

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * 分页对象
  *
- * @author Levin
+ * @author Guoz
  * @version 2.5.1
  * @since 2018-01-10
  */

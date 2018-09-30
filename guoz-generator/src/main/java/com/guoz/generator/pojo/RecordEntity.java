@@ -6,7 +6,7 @@ import javax.persistence.Column;
 
 /**
  * @version 2.5.1
- * @@author Levin
+ * @@author Guoz
  * @since 2018-01-10
  */
 public class RecordEntity implements Serializable {

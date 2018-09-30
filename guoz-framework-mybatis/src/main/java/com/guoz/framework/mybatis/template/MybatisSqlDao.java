@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 缺省全局通用数据访问对象，缺省数据访问对象连接到dataSource Bean配置的数据源
  *
- * @author Levin
+ * @author Guoz
  * @version 2.5.1
  * @since 2018-01-10
  */

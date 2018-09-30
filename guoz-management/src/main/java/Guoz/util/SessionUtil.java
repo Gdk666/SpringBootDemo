@@ -1,15 +1,14 @@
 
 package Guoz.util;
 
-
-import Guoz.Dao.ManagerDto;
+import Guoz.pojo.dto.ManagerDto;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 
 /**
  * Session操作工具类
  *
- * @author Levin
+ * @author Guoz
  * @since 2018-01-10
  */
 

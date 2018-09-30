@@ -1,6 +1,8 @@
 package Guoz.Service;
 
 
+import Guoz.pojo.po.Manager;
+import Guoz.service.ManagerService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -22,25 +24,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)//提供虚拟环境随机端口
 public class UserServiceTest {
     @Autowired
-    private UserService userService;
+    private ManagerService managerService;
 
     @Test
     public void name() throws Exception {
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-        /*DefaultSecurityManager defaultSecurityManager = new DefaultSecurityManager();
-        defaultSecurityManager.setRealm();*/
-        SecurityManager securityManager = factory.getInstance();
-        SecurityUtils.setSecurityManager(securityManager);
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang","123");
-        try {
-            subject.login(token);
-        }catch (AuthenticationException ex){
-
-        }
-        Assert.assertEquals(true,subject.isAuthenticated());
-
-        subject.logout();
+        Manager manager = managerService.getById("1");
+        System.out.println(manager);
 
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 树形结构
  *
- * @author Levin
+ * @author Guoz
  * @since 2018-01-10
  */
 public class TreeNode implements java.io.Serializable {

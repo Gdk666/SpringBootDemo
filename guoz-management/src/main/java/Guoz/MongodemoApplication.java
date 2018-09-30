@@ -1,9 +1,6 @@
 package Guoz;
 
 
-
-import Guoz.Service.CacheKeyGenerator;
-import Guoz.Service.serviceimpl.LockKeyGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -15,23 +12,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import java.time.Duration;
 
 
-@MapperScan(basePackages ="Guoz.Dao")  //自动扫描Dao下的接口
 @SpringBootApplication
-@EnableScheduling //定时任务
+/*@EnableScheduling //定时任务
+*/
+@ComponentScan("Guoz")
 @EnableCaching
+@EnableRedisHttpSession
 public class MongodemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MongodemoApplication.class, args);
+		ApplicationContext context = SpringApplication.run(MongodemoApplication.class, args);
+		SpringContextUtil.setApplicationContext(context);
 	}
 
-	@Bean
+	/*@Bean
 	public TaskScheduler taskScheduler(){
 		ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
 		threadPoolTaskScheduler.setPoolSize(10);
@@ -40,7 +41,7 @@ public class MongodemoApplication {
 	@Bean
 	public CacheKeyGenerator cacheKeyGenerator() {
 		return new LockKeyGenerator();
-	}
+	}*/
 
 	@Bean
 	public ServerEndpointExporter serverEndpointExporter() {

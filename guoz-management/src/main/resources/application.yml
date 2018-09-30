@@ -1,13 +1,13 @@
 spring:
 ## mysql 配置
   datasource:
-    url: jdbc:mysql://localhost:3306/TEST?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/battcn-plus?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     username: root
     password: 1234
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
-          max-lifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
-          maximum-pool-size:  15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      max-lifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+      maximum-pool-size:  15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
 ## mongodb 配置
   data:
     mongodb:
@@ -28,6 +28,7 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
+
 #    cluster:
 #      nodes:
 #      max-redirects:
@@ -60,6 +61,8 @@ spring:
       location:
       file-size-threshold: 0
       resolve-lazily: false
+  session:
+    store-type: redis
 
 ## Activiti
 ##  activiti:
@@ -71,7 +74,7 @@ server:
     context-path:
 #公共配置与profiles选择无关
 mybatis:
-  typeAliasesPackage: Guoz.model
+  typeAliasesPackage: Guoz.pojo
   mapper-locations: classpath:mapper/*.xml
 # 驼峰命名规范 如：数据库字段是  order_id 那么 实体字段就要写成 orderId
   configuration:
@@ -82,8 +85,8 @@ mybatis:
 ##通用Mapper
 # 主键自增回写方法,默认值MYSQL
 
-logging:
-  config: classpath:springboot-log.xml
+#logging:
+#  config: classpath:springboot-log.xml
 #  level:
                   #    root: INFO
                   #    org.springframework.web: DEBUG

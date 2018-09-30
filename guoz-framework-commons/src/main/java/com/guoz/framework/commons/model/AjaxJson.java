@@ -3,7 +3,7 @@ package com.guoz.framework.commons.model;
 /**
  * 封装返回的JSON
  *
- * @author Levin
+ * @author Guoz
  * @since 2018-01-10
  */
 public class AjaxJson {
