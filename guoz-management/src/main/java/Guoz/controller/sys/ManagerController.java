@@ -90,7 +90,7 @@ public class ManagerController extends BaseController {
     public String getUser(@PathVariable int id, HttpServletRequest request) {
         System.out.println("123");
         ModelAndView mav = new ModelAndView();
-        Manager manager = this.managerService.getById("1");
+        Manager manager = this.managerService.getById("12");
         mav.addObject("author",manager);
         return "hello";
     }
