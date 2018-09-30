@@ -1,0 +1,39 @@
+package com.guoz.framework.commons.utils;
+
+import javax.websocket.RemoteEndpoint;
+import javax.websocket.Session;
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @description:
+ * @Data 10:08
+ * @Version 1.0
+ * @author: Guoz
+ **/
+public final class WebSocketUtils {
+    /**
+     * 模拟存储 websocket session 使用
+     */
+    public static final Map<String,Session> SESSION_CACHE = new ConcurrentHashMap<>();
+
+    public static void sendMessageAll(String message){
+        SESSION_CACHE.forEach((sessionId,session) -> sendMessage(session,message));
+    }
+
+    public static void sendMessage(Session session,String message){
+        if (session == null){
+            return;
+        }
+        final RemoteEndpoint.Basic basic = session.getBasicRemote();
+        if (basic == null){
+            return;
+        }
+        try {
+            basic.sendText(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
