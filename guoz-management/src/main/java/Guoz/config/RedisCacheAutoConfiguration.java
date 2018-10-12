@@ -53,7 +53,6 @@ public class RedisCacheAutoConfiguration extends CachingConfigurerSupport {
     }
     @Bean
     public RedisTemplate<String, Serializable> redisCacheTemplate(LettuceConnectionFactory redisConnectionFactory) {
-        System.out.println("1");
         RedisTemplate<String, Serializable> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
@@ -63,7 +62,6 @@ public class RedisCacheAutoConfiguration extends CachingConfigurerSupport {
     // 以下两种redisTemplate自由根据场景选择
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        System.out.println("2");
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
