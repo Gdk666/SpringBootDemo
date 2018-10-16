@@ -38,11 +38,6 @@
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>
-
-    <logger name="com.Guoz.Controller"/>
-    <logger name="UserServiceTest" level="debug" additivity="false">
-        <appender-ref ref="console" />
-    </logger>
     <!--myibatis log configure-->
     <logger name="com.apache.ibatis" level="TRACE"/>
     <logger name="java.sql.Connection" level="DEBUG"/>

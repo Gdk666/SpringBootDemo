@@ -28,7 +28,6 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 
 	@Override
 	public PageInfo<ManagerDto> listManagerByName(DataGrid grid, String name, String account) {
-		System.out.println("123");
 		grid.getOrderBy();
 		return PageHelper.startPage(grid.getPageNum(), grid.getPageSize())
 				.doSelectPageInfo(() -> this.managerMapper.listManagerByName(name,account));

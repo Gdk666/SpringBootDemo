@@ -77,22 +77,6 @@ public class IndexController extends BaseController {
     @Value("${spring.datasource.password}")
     private String password;
 
-    @ApiIgnore
-    @GetMapping("install")
-    @ResponseBody
-    public ApiResult<String> install() {
-        try {
-            Class.forName(driver).newInstance();
-            Connection conn = (Connection) DriverManager.getConnection(url, username, password);
-            ScriptRunner runner = new ScriptRunner(conn);
-            runner.setErrorLogWriter(null);
-            runner.setLogWriter(null);
-            runner.runScript((new InputStreamReader(getClass().getResourceAsStream("/使用须知/install.sql"), "UTF-8")));
-        } catch (Exception e) {
-            return ApiResult.getFailure("初始化失败！请联系管理员");
-        }
-        return ApiResult.getSuccess("初始化成功");
-    }
 
     @RequestMapping("op_{oper}_{menuId}")
     @ApiOperation(value = "根据oper与id转发到指定的地址", httpMethod = "GET")

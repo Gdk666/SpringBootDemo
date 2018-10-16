@@ -84,7 +84,7 @@ public class RedisCacheAutoConfiguration extends CachingConfigurerSupport {
         //生成默认配置
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
         // 设置缓存有效期6s
-        redisCacheConfiguration = redisCacheConfiguration.entryTtl(Duration.ofSeconds(6))
+        redisCacheConfiguration = redisCacheConfiguration.entryTtl(Duration.ofSeconds(30))
                 //不缓存空值
             .disableCachingNullValues();
         return RedisCacheManager

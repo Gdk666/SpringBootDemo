@@ -16,12 +16,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 
@@ -35,6 +38,8 @@ public class ManagerController extends BaseController {
 
     private final ManagerService managerService;
     private final RoleService roleService;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Autowired
     public ManagerController(ManagerService managerService, RoleService roleService) {
@@ -88,10 +93,11 @@ public class ManagerController extends BaseController {
     @Cacheable(value="cacheName", key ="'manager_'+#id")
     @GetMapping("/get/{id}")
     public String getUser(@PathVariable int id, HttpServletRequest request) {
-        System.out.println("123");
         ModelAndView mav = new ModelAndView();
         Manager manager = this.managerService.getById("1");
         mav.addObject("author",manager);
+        request.getSession().setAttribute("manager",manager);
+        redisTemplate.opsForValue().set("h2", "123123");
         return "hello";
     }
 

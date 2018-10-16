@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * @author Guoz
  */
@@ -32,7 +35,9 @@ public class LoginController extends BaseController {
 
     @ApiIgnore
     @GetMapping("logout")
-    public String logout() {
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
         return PATH_REDIRECT_LOGOUT;
     }
 

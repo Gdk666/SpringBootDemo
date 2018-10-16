@@ -1,31 +1,28 @@
 package Guoz;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.CacheManager;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-import tk.mybatis.spring.annotation.MapperScan;
-
-import java.time.Duration;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 /*@EnableScheduling //定时任务
 */
 @ComponentScan("Guoz")
 @EnableCaching
-@EnableRedisHttpSession
+@ServletComponentScan
 public class MongodemoApplication {
+	public static Logger logger = LoggerFactory.getLogger(MongodemoApplication.class);
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(MongodemoApplication.class, args);
