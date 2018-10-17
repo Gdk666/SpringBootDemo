@@ -1,23 +1,24 @@
 package Guoz.config.shiro;
 
-import Guoz.config.ShiroSessionManager;
 import Guoz.service.OperateService;
 import com.alibaba.fastjson.JSON;
-
 import com.google.common.collect.Maps;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.RememberMeManager;
-import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
+import org.crazycake.shiro.RedisSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,6 +35,13 @@ import java.util.Map;
 public class ShiroConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+
+    @Value("${spring.redis.host}")
+    private String host;
+    @Value("${spring.redis.port}")
+    private int port;
+    @Value("${spring.redis.password}")
+    private String password;
 
     @Bean
     public EhCacheManager getEhCacheManager() {
@@ -58,10 +66,57 @@ public class ShiroConfiguration {
         rememberMeManager.setCookie(cookie);
         return rememberMeManager;
     }
+    /**
+     * cacheManager 缓存 redis实现
+     * 使用的是shiro-redis开源插件
+     * @return
+     */
+    public RedisCacheManager cacheManager() {
+        logger.info("创建RedisCacheManager...");
+        RedisCacheManager redisCacheManager = new RedisCacheManager();
+        redisCacheManager.setRedisManager(redisManager());
+        return redisCacheManager;
+    }
+
+    /**
+     * 配置shiro redisManager
+     * 使用的是shiro-redis开源插件
+     *
+     * @return
+     */
+    public RedisManager redisManager() {
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost(host);
+        redisManager.setPort(port);
+        redisManager.setExpire(1800);// 配置缓存过期时间
+        redisManager.setTimeout(0);
+        redisManager.setPassword(password);
+        return redisManager;
+    }
+    /**
+     * Session Manager
+     * 使用的是shiro-redis开源插件
+     */
+    public DefaultWebSessionManager sessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        sessionManager.setSessionDAO(redisSessionDAO());
+        return sessionManager;
+    }
+
+    /**
+     * RedisSessionDAO shiro sessionDao层的实现 通过redis
+     * 使用的是shiro-redis开源插件
+     */
+    @Bean
+    public RedisSessionDAO redisSessionDAO() {
+        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+        redisSessionDAO.setRedisManager(redisManager());
+        return redisSessionDAO;
+    }
 
 
     @Bean(name = "lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
+    public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
@@ -82,6 +137,7 @@ public class ShiroConfiguration {
         defaultWebSecurityManager.setRememberMeManager(getRememberManager());
         return defaultWebSecurityManager;
     }
+
     //开启aop注解
     @Bean
     public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(
@@ -91,14 +147,6 @@ public class ShiroConfiguration {
         return advisor;
     }
 
-
-    @Bean
-    public SessionManager sessionManager(){
-        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
-        //缓存为redis，需要换为redis管理
-        shiroSessionManager.setSessionDAO(new EnterpriseCacheSessionDAO());
-        return shiroSessionManager;
-    }
 
     /**
      * 加载shiroFilter权限控制规则（从数据库读取然后配置）
@@ -150,5 +198,8 @@ public class ShiroConfiguration {
         loadShiroFilterChain(shiroFilterFactoryBean, service);
         return shiroFilterFactoryBean;
     }
+
+
+
 
 }
