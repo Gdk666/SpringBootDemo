@@ -94,7 +94,7 @@ public class ManagerController extends BaseController {
     @GetMapping("/get/{id}")
     public String getUser(@PathVariable int id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        Manager manager = this.managerService.getById("1");
+        Manager manager = this.managerService.getById(String.valueOf(id));
         mav.addObject("author",manager);
         request.getSession().setAttribute("manager",manager);
         redisTemplate.opsForValue().set("h2", "123123");
