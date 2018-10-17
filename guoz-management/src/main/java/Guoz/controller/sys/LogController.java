@@ -6,7 +6,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.github.pagehelper.PageInfo;
 import com.guoz.framework.commons.Exception.BattcnException;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.mybatis.page.DataGrid;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -38,7 +38,7 @@ public class LogController {
     }
 
     @RequestMapping(value = "/list")
-    @BattcnLog(description = "进入日志查询的页面", module = "日志模块", methods = "日志list")
+    @GuozLog(description = "进入日志查询的页面", module = "日志模块", methods = "日志list")
     @ApiOperation(value = "跳转日志页面", hidden = true)
     public String list() throws BattcnException {
         return "sys/log/list";

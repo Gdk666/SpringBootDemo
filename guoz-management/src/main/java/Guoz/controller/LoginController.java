@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * @author Guoz
  */
@@ -35,9 +32,7 @@ public class LoginController extends BaseController {
 
     @ApiIgnore
     @GetMapping("logout")
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.invalidate();
+    public String logout() {
         return PATH_REDIRECT_LOGOUT;
     }
 
@@ -50,7 +45,6 @@ public class LoginController extends BaseController {
         // 认证执行者交由ShiroDbRealm中doGetAuthenticationInfo处理
         // 当以上认证成功后会向下执行,认证失败会抛出异常
         UsernamePasswordToken token = new UsernamePasswordToken(manager.getAccount(), manager.getPassword());
-
         try {
             sub.login(token);
         } catch (UnknownAccountException e) {

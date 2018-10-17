@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface BattcnLog {
+public @interface GuozLog {
 
     /**
      * 模块名称 系统管理-用户管理－列表页面

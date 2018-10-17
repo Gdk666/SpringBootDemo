@@ -6,7 +6,7 @@ import Guoz.pojo.message.ApiResult;
 import Guoz.pojo.po.Menu;
 import Guoz.service.MenuService;
 import com.google.common.collect.Lists;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.mybatis.page.DataGrid;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class MenuController extends BaseController {
         return "sys/menu/edit";
     }
 
-    @BattcnLog(module = "菜单管理", methods = "保存菜单", description = "添加/修改菜单信息")
+    @GuozLog(module = "菜单管理", methods = "保存菜单", description = "添加/修改菜单信息")
     @PostMapping(value = "/save")
     @ResponseBody
     public ApiResult<String> save(Menu menu) {
@@ -61,7 +61,7 @@ public class MenuController extends BaseController {
         return ApiResult.SUCCESS;
     }
 
-    @BattcnLog(module = "菜单管理", methods = "移除菜单", description = "删除菜单信息")
+    @GuozLog(module = "菜单管理", methods = "移除菜单", description = "删除菜单信息")
     @PostMapping(value = "/remove")
     @ResponseBody
     public ApiResult<String> del(Integer[] ids) {

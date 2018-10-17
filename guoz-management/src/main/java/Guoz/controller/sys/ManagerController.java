@@ -10,7 +10,7 @@ import Guoz.service.RoleService;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.guoz.framework.commons.Exception.BattcnException;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.mybatis.page.DataGrid;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -71,7 +71,7 @@ public class ManagerController extends BaseController {
     }
 
     @ApiOperation(value = "添加/修改用户信息")
-    @BattcnLog(module = "用户管理", methods = "保存用户", description = "添加/修改用户信息")
+    @GuozLog(module = "用户管理", methods = "保存用户", description = "添加/修改用户信息")
     @PostMapping(value = "/save")
     @ResponseBody
     public ApiResult<Manager> save(Manager dto) {
@@ -83,7 +83,7 @@ public class ManagerController extends BaseController {
     }
 
     @ApiOperation(value = "删除用户信息")
-    @BattcnLog(module = "用户管理", methods = "移除用户", description = "删除用户信息")
+    @GuozLog(module = "用户管理", methods = "移除用户", description = "删除用户信息")
     @PostMapping(value = "/remove")
     @ResponseBody
     public ApiResult<String> del(Integer[] ids) {

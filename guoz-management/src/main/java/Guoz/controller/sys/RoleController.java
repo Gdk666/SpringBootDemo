@@ -7,7 +7,7 @@ import Guoz.pojo.po.Role;
 import Guoz.service.MenuService;
 import Guoz.service.RoleService;
 import com.github.pagehelper.PageInfo;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.mybatis.page.DataGrid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,7 +66,7 @@ public class RoleController extends BaseController {
         return this.roleService.listForDataGrid(grid);
     }
 
-    @BattcnLog(module = "角色管理", methods = "保存角色", description = "添加/修改角色信息")
+    @GuozLog(module = "角色管理", methods = "保存角色", description = "添加/修改角色信息")
     @PostMapping(value = "/save")
     @ResponseBody
     public ApiResult<String> save(Role dto) {
@@ -77,7 +77,7 @@ public class RoleController extends BaseController {
         return ApiResult.getResponse(this.roleService.insertSelective(dto));
     }
 
-    @BattcnLog(module = "角色管理", methods = "移除角色", description = "删除角色信息")
+    @GuozLog(module = "角色管理", methods = "移除角色", description = "删除角色信息")
     @PostMapping(value = "/remove")
     @ResponseBody
     public ApiResult<String> del(Integer[] ids) {

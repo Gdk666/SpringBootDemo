@@ -9,7 +9,7 @@ import Guoz.service.MenuService;
 import Guoz.service.OperateService;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.mybatis.page.DataGrid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +61,7 @@ public class OperateController extends BaseController {
         return this.operateService.listOperateByPage(grid);
     }
 
-    @BattcnLog(module = "操作管理", methods = "保存操作", description = "添加/修改操作信息")
+    @GuozLog(module = "操作管理", methods = "保存操作", description = "添加/修改操作信息")
     @PostMapping(value = "/save")
     @ResponseBody
     public ApiResult<String> save(Operate dto) {
@@ -71,7 +71,7 @@ public class OperateController extends BaseController {
         return ApiResult.getResponse(this.operateService.insertSelective(dto));
     }
 
-    @BattcnLog(module = "操作管理", methods = "移除操作", description = "删除操作信息")
+    @GuozLog(module = "操作管理", methods = "移除操作", description = "删除操作信息")
     @PostMapping(value = "/remove")
     @ResponseBody
     public ApiResult<String> del(Integer[] ids) {

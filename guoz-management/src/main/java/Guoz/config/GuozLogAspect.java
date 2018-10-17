@@ -6,7 +6,7 @@ import Guoz.service.LogService;
 import Guoz.util.SessionUtil;
 import com.alibaba.fastjson.JSON;
 import com.guoz.framework.commons.Exception.BattcnException;
-import com.guoz.framework.commons.annotation.BattcnLog;
+import com.guoz.framework.commons.annotation.GuozLog;
 import com.guoz.framework.commons.utils.IpAddress;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -32,17 +32,17 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
-public class BattcnLogAspect {
+public class GuozLogAspect {
 
     /**
      * 本地异常日志记录对象
      */
-    private static final Logger logger = LoggerFactory.getLogger(BattcnLogAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(GuozLogAspect.class);
     private final LogService logsService;
     private final HttpServletRequest request;
 
     @Autowired
-    public BattcnLogAspect(LogService logsService, HttpServletRequest request) {
+    public GuozLogAspect(LogService logsService, HttpServletRequest request) {
         this.logsService = logsService;
         this.request = request;
     }
@@ -51,7 +51,7 @@ public class BattcnLogAspect {
     /**
      * Controller 拦截点,前置通知
      */
-    @Pointcut("@annotation(com.guoz.framework.commons.annotation.BattcnLog)")
+    @Pointcut("@annotation(com.guoz.framework.commons.annotation.GuozLog)")
     public void beforeController() {
     }
 
@@ -78,7 +78,7 @@ public class BattcnLogAspect {
             ip = "无法获取登录用户Ip";
         }
         try {
-            Log log = getBattcnLog(point);
+            Log log = getGuozLog(point);
             // 登录名
             ManagerDto session = SessionUtil.getSession();
             if (session != null) {
@@ -125,7 +125,7 @@ public class BattcnLogAspect {
             } else {
                 accountName = "don't username";
             }
-            log = getBattcnLog(point);
+            log = getGuozLog(point);
             // 执行方法所消耗的时间
             start = System.currentTimeMillis();
             result = point.proceed();
@@ -167,7 +167,7 @@ public class BattcnLogAspect {
      * @return 方法描述
      * @throws Exception 抛出异常
      */
-    private Log getBattcnLog(JoinPoint joinPoint) throws Exception {
+    private Log getGuozLog(JoinPoint joinPoint) throws Exception {
         String targetName = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
         Object[] arguments = joinPoint.getArgs();
@@ -175,7 +175,7 @@ public class BattcnLogAspect {
         Method[] methods = targetClass.getMethods();
         for (Method method : methods) {
             if (method.getName().equals(methodName) && method.getParameterTypes().length == arguments.length) {
-                BattcnLog bl = method.getAnnotation(BattcnLog.class);
+                GuozLog bl = method.getAnnotation(GuozLog.class);
                 return new Log(bl.module(), bl.methods(), StringUtils.defaultString(bl.description(), "执行成功!"));
             }
         }
