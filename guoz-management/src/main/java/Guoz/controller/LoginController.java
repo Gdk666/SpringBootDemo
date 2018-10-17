@@ -50,6 +50,7 @@ public class LoginController extends BaseController {
         // 认证执行者交由ShiroDbRealm中doGetAuthenticationInfo处理
         // 当以上认证成功后会向下执行,认证失败会抛出异常
         UsernamePasswordToken token = new UsernamePasswordToken(manager.getAccount(), manager.getPassword());
+
         try {
             sub.login(token);
         } catch (UnknownAccountException e) {
