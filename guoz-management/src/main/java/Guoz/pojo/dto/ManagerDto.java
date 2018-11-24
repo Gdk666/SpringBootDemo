@@ -28,4 +28,6 @@ public class ManagerDto extends Manager {
 		this.roleCode = roleCode;
 	}
 
+
+
 }

@@ -15,6 +15,11 @@
 		</if>
 	</select>
 
+	<select id="getById" resultType="Guoz.pojo.dto.ManagerDto">
+		SELECT t.name FROM t_sys_manager t
+		WHERE t.id = #{id}
+	</select>
+
 
 
 </mapper>

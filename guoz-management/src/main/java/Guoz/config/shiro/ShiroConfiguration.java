@@ -100,6 +100,7 @@ public class ShiroConfiguration {
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(redisSessionDAO());
+        sessionManager.setSessionIdUrlRewritingEnabled(false);
         return sessionManager;
     }
 
@@ -157,6 +158,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/resource/**", "anon");
         filterChainDefinitionMap.put("/install", "anon");
         filterChainDefinitionMap.put("/sys/manager/**", "anon");
+        filterChainDefinitionMap.put("/portal/**", "anon");
         // anon：它对应的过滤器里面是空的,什么都没做
         logger.info("##################从数据库读取权限规则，加载到shiroFilter中##################");
         Map<String, String> permissions = Maps.newLinkedHashMap();

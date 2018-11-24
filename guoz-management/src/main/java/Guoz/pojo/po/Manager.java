@@ -325,4 +325,22 @@ public class Manager extends RecordEntity {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", roleId=" + roleId +
+                ", name='" + name + '\'' +
+                ", credential='" + credential + '\'' +
+                ", locked=" + locked +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
+                ", type='" + type + '\'' +
+                ", photo='" + photo + '\'' +
+                ", lastLoginIp='" + lastLoginIp + '\'' +
+                '}';
+    }
 }

@@ -21,7 +21,7 @@ spring:
     ## Redis服务器连接端口
     port: 6379
     ## Redis服务器连接端口
-    password:
+    password: Wang12369.
     lettuce:
       pool:
         max-active: 8
@@ -70,7 +70,7 @@ spring:
 ##        check-process-definitions: false
 
 server:
-  port: 8090
+  port: 8091
   servlet:
     context-path:
 #公共配置与profiles选择无关

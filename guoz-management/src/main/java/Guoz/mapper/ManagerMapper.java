@@ -33,7 +33,7 @@ public interface ManagerMapper extends BaseMapper<Manager> {
     @Select("SELECT t1.*,t2.name roleName,t2.code roleCode FROM t_sys_manager t1 JOIN t_sys_role t2 ON t2.id = t1.role_id WHERE account = #{account}")
     ManagerDto selectManagerByAccount(@Param("account") String account);
 
-    @Select("SELECT * FROM t_sys_manager t where t.id = #{id}")
+
     ManagerDto getById(@Param("id") String id);
 
 }

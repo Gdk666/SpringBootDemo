@@ -55,8 +55,6 @@ public class test {
 
         scanner.close();
         //
-
-
         logger.info("end");
 
     }

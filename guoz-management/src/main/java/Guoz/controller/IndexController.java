@@ -1,20 +1,17 @@
 package Guoz.controller;
 
 
-import Guoz.pojo.message.ApiResult;
 import Guoz.pojo.po.Menu;
 import Guoz.pojo.po.Operate;
 import Guoz.service.MenuService;
 import Guoz.service.OperateService;
 import Guoz.util.SessionUtil;
 import com.guoz.framework.commons.Exception.BattcnException;
-import com.mysql.jdbc.Connection;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.ibatis.jdbc.ScriptRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,11 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.io.InputStreamReader;
-import java.sql.DriverManager;
 import java.util.List;
 import java.util.Optional;
 

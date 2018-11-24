@@ -97,7 +97,7 @@ public class ManagerController extends BaseController {
         Manager manager = this.managerService.getById(String.valueOf(id));
         mav.addObject("author",manager);
         request.getSession().setAttribute("manager",manager);
-        redisTemplate.opsForValue().set("h2", "123123");
+        redisTemplate.opsForValue().set("h2", "123-123".split("-")[0]);
         return "hello";
     }
 
