@@ -1,4 +1,0 @@
-2018-05-04 14:39:23,837 INFO (StartupInfoLogger.java:50)- Starting UserServiceTest on TYZ047-PC with PID 27464 (started by 1 in D:\deployproject\SpringBootDemo)
-2018-05-04 14:39:23,854 DEBUG (StartupInfoLogger.java:53)- Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
-2018-05-04 14:39:23,861 INFO (SpringApplication.java:652)- No active profile set, falling back to default profiles: default
-2018-05-04 14:39:30,656 INFO (StartupInfoLogger.java:59)- Started UserServiceTest in 7.878 seconds (JVM running for 8.801)
