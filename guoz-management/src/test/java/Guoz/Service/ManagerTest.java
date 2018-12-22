@@ -1,8 +1,13 @@
 package Guoz.Service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Guoz.controller.BaseController;
+import Guoz.mapper.ManagerMapper;
 import Guoz.pojo.dto.ManagerDto;
+import Guoz.pojo.po.Manager;
 import Guoz.service.ManagerService;
 import Guoz.service.rabbitService.RabbitService;
 import org.junit.Test;
@@ -18,10 +23,24 @@ public class ManagerTest extends BaseController {
     @Autowired
     private ManagerService managerService;
 
+    @Autowired
+    private ManagerMapper managerMapper;
+
     @Test
     public void test(){
         ManagerDto d = managerService.getById("1");
         System.out.println(d.toString());
+    }
+
+    @Test
+    public void updateBch(){
+        List<Manager> list = new ArrayList<>();
+        Manager manager = new Manager(1,"1");
+        Manager manager1 = new Manager(2,"2");
+        list.add(manager);
+        list.add(manager1);
+        managerService.updateBch(list);
+        System.out.println("");
     }
 
 }

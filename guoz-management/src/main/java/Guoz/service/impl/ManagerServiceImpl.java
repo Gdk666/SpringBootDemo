@@ -9,6 +9,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.guoz.framework.mybatis.page.DataGrid;
 import com.guoz.framework.mybatis.service.impl.BaseServiceImpl;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -43,5 +46,9 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 		return this.managerMapper.getById(id);
 	}
 
+	@Override
+	public void updateBch(List<Manager> list) {
+		managerMapper.updateBch(list);
+	}
 
 }

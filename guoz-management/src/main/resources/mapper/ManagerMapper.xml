@@ -20,6 +20,23 @@
 		WHERE t.id = #{id}
 	</select>
 
+	<update id="updateBch" parameterType="java.util.List">
+        UPDATE t_sys_manager
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="name=case" suffix="end,">
+              <foreach collection="list" item="item" index="index">
+                WHEN id = #{item.id} THEN  #{item.name}
+              </foreach>
+            </trim>
+        </trim>
+        <where>
+           id in 
+            <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+                #{item.id}
+            </foreach>
+        </where>
+	</update>
+
 
 
 </mapper>

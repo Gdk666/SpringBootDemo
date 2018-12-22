@@ -6,6 +6,8 @@ import Guoz.pojo.dto.ManagerDto;
 import Guoz.pojo.po.Manager;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author Guoz
  * @version 2.5.1
@@ -32,5 +34,7 @@ public interface ManagerService extends BaseService<Manager> {
     ManagerDto selectManagerByAccount(String account);
 
     ManagerDto getById(String id);
+
+    void updateBch(List<Manager> list);
 
 }

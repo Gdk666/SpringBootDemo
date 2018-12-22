@@ -36,4 +36,6 @@ public interface ManagerMapper extends BaseMapper<Manager> {
 
     ManagerDto getById(@Param("id") String id);
 
+    void updateBch(List<Manager> list);
+
 }

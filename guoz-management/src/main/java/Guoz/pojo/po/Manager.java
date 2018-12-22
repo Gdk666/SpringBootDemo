@@ -15,6 +15,11 @@ public class Manager extends RecordEntity {
 
     private static final long serialVersionUID = -3467360899069048896L;
 
+    public Manager(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     /**
      * 自增ID
      */
