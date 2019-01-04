@@ -115,19 +115,6 @@ info:
     author: Guoz
 
 
-# 加载所有的端点/默认只加载了 info / health
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-  endpoint:
-# 可以关闭制定的端点
-    shutdown:
-      enabled: false
-    health:
-      show-details: always
-
 
 
 
