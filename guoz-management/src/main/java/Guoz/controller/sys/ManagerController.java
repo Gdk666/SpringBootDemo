@@ -10,6 +10,15 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -44,6 +53,14 @@ public class ManagerController extends BaseController {
     private final RoleService roleService;
     @Autowired
     private StringRedisTemplate redisTemplate;
+    @Autowired
+    private RepositoryService repositoryService;
+    @Autowired
+    private RuntimeService runtimeService;
+    @Autowired
+    private TaskService taskService;
+
+
 
     @Autowired
     public ManagerController(ManagerService managerService, RoleService roleService) {
@@ -105,5 +122,29 @@ public class ManagerController extends BaseController {
 
         return "hello";
     }
+
+    @RequestMapping("/activiti")
+    public void helloWorld() {
+        //根据bpmn文件部署流程
+        Deployment deploy = repositoryService.createDeployment()
+            .addClasspathResource("BPMN/testApprove.bpmn")
+            .deploy();
+        //获取流程定义
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().deploymentId(deploy.getId()).singleResult();
+        //启动流程定义，返回流程实例
+        ProcessInstance pi = runtimeService.startProcessInstanceById(processDefinition.getId());
+        String processId = pi.getId();
+        System.out.println("流程创建成功，当前流程实例ID："+processId);
+        Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
+        System.out.println("执行前，任务名称："+task.getName());
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
+        logger.info("流程定义文件:{}，流程ID:{}",processDefinition.getName(),processDefinition.getId());
+        System.out.println("task为null，任务执行完毕："+task);
+
+
+
+    }
+
 
 }

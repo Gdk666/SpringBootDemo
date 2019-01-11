@@ -1,5 +1,4 @@
-package Guoz.config.activitiConfig;/*
-package com.Guoz.utils.common.config.activitiConfig;
+package Guoz.config.activitiConfig;
 
 import org.activiti.engine.*;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
@@ -11,12 +10,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import javax.sql.DataSource;
 
 
-*/
-/**
- * @description:
- * @Data 10:58
- * @Version 1.0
- **//*
+
 
 @Configuration
 public class activitiConfig {
@@ -26,11 +20,8 @@ public class activitiConfig {
     @Autowired
     private ResourcePatternResolver resourceLoader;
 
-    */
-/**
-     * 初始化配置，将创建28张表
-     * @return
-     *//*
+
+
 
     @Bean
     public StandaloneProcessEngineConfiguration processEngineConfiguration() {
@@ -61,4 +52,4 @@ public class activitiConfig {
         return processEngine().getTaskService();
     }
 }
-*/
+
