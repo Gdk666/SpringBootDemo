@@ -1,6 +1,7 @@
 package Guoz.Service;
 
 
+import Guoz.config.DistributeRedisLock;
 import Guoz.config.RabbitMQ.HelloReceiver;
 import Guoz.controller.BaseController;
 import Guoz.service.rabbitService.RabbitService;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
@@ -17,9 +19,14 @@ public class RabbitTest extends BaseController {
     @Autowired
     private RabbitService rabbitService;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @Test
     public void test(){
-        rabbitService.defaultMessage();
+        String key = "hx123";
+        DistributeRedisLock.acq(key);
+        DistributeRedisLock.rele(key);
     }
 
 }

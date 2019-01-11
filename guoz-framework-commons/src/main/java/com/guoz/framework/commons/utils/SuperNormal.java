@@ -28,10 +28,12 @@ public class SuperNormal {
 	 * @return
 	 */
 	public <T> T checkNotEmpty(T obj, String msg) {
-		if (obj == null)
+		if (obj == null) {
 			throw new AppException(msg == null ? "" : msg);
-		if ((obj instanceof String) && ((String) obj).trim().isEmpty())
+		}
+		if ((obj instanceof String) && ((String) obj).trim().isEmpty()) {
 			throw new AppException(msg == null ? "" : msg);
+		}
 		return obj;
 	}
 	/**
@@ -40,10 +42,12 @@ public class SuperNormal {
 	 * @return
 	 */
 	public void checkNotEmpties(Object ... objs) {
-		if(objs == null)
+		if(objs == null) {
 			return;
-		if(objs.length % 2 != 0)
+		}
+		if(objs.length % 2 != 0) {
 			throw new AppException("参数长度必需为偶数");
+		}
 		for(int i=0; i<objs.length; i=i+2) {
 			Object obj = objs[i];
 			String msg = (String)objs[i+1];
@@ -56,10 +60,12 @@ public class SuperNormal {
 
 	@SuppressWarnings("unchecked")
 	public <T> T checkNotEmptyAndTrim(T obj, String msg) {
-		if (obj == null)
+		if (obj == null) {
 			throw new AppException(msg == null ? "" : msg);
-		if ((obj instanceof String) && ((String) obj).isEmpty())
+		}
+		if ((obj instanceof String) && ((String) obj).isEmpty()) {
 			throw new AppException(msg == null ? "" : msg);
+		}
 		if (obj instanceof String) {
 			return ((T) ((String) obj).trim());
 		}

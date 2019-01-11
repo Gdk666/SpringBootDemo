@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.guoz.framework.commons.Exception.BattcnException;
 import com.guoz.framework.commons.annotation.GuozLog;
-import com.guoz.framework.commons.annotation.testAnnotation;
 import com.guoz.framework.mybatis.page.DataGrid;
 
 import java.util.Date;
@@ -97,7 +96,6 @@ public class ManagerController extends BaseController {
     }
     @Cacheable(value="cacheName", key ="'manager_'+#id")
     @GetMapping("/get/{id}")
-    @testAnnotation(value = "getUser")
     public String getUser(@PathVariable int id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         Manager manager = this.managerService.getById(String.valueOf(id));

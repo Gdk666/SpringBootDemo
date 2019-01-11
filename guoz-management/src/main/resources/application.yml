@@ -70,7 +70,7 @@ spring:
 ##        check-process-definitions: false
 
 server:
-  port: 8091
+  port: 8090
   servlet:
     context-path:
 #公共配置与profiles选择无关

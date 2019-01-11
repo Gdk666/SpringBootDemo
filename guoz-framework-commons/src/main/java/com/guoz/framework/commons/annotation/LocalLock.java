@@ -16,5 +16,4 @@ public @interface LocalLock {
 
     int expire() default 5;
 
-
 }

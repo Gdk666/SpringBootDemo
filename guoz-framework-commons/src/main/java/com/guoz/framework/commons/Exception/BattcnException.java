@@ -2,7 +2,7 @@ package com.guoz.framework.commons.Exception;
 
 
 
-import com.guoz.framework.commons.Exception.enums.CustomResponseCode;
+import com.guoz.framework.commons.enums.CustomResponseCode;
 
 import java.text.MessageFormat;
 

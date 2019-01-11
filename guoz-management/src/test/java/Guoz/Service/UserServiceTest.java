@@ -1,6 +1,10 @@
 package Guoz.Service;
 
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import Guoz.controller.BaseController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +22,13 @@ public class UserServiceTest extends BaseController {
 
     private static String resource_b = "B";
 
-    private static int count = 0;
+    private static  int count = 0;
+
+    private static final Lock lock = new ReentrantLock();
+
+    private static Condition condition = lock.newCondition();
+
+
 
 
     @Test
@@ -33,16 +43,24 @@ public class UserServiceTest extends BaseController {
         logger.info("count数目:{} 运行时间:{}",count,stopWatch.getTotalTimeMillis());
     }
 
+    public static  synchronized void inc(){
+        count++;
+    }
+
     public static void deadLock() {
         Thread threadC = new Thread(new Runnable() {
-
             @Override
-            public void run(){
-                synchronized (UserServiceTest.class){
+            public  void run(){
                     for (int i=0;i<100000;i++){
-                        count++;
+                        try {
+                            Thread.sleep(1000);
+                            inc();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-                }
+
             }
         });
         threadC.start();

@@ -1,4 +1,4 @@
-package com.guoz.framework.commons.Exception.enums;
+package com.guoz.framework.commons.enums;
 
 
 /**

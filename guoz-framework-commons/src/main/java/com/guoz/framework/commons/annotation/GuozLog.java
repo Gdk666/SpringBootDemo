@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @author Guoz
  * @since 2018-01-10
  */
-@Target({ElementType.PARAMETER, ElementType.METHOD})
+@Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface GuozLog {
