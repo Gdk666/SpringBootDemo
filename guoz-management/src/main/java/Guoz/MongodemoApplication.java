@@ -1,6 +1,8 @@
 package Guoz;
 
 
+import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 @ComponentScan("Guoz")
 @EnableCaching
 @ServletComponentScan
+@EnableDubboConfiguration
 public class MongodemoApplication {
 	public static Logger logger = LoggerFactory.getLogger(MongodemoApplication.class);
 

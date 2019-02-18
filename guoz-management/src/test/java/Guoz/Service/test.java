@@ -33,7 +33,7 @@ public class test {
         logger.info("start");
         //创建流程引擎
         ProcessEngine processEngine = getProcessEngine();
-        //部署流程定义文件
+        /*//部署流程定义文件
         ProcessDefinition processDefinition = getProcessDefinition(processEngine);
         //启动运行流程
         final ProcessInstance[] processInstance = {getProcessInstance(processEngine, processDefinition)};
@@ -53,7 +53,10 @@ public class test {
                     .singleResult();
         });
 
-        scanner.close();
+        //scanner.close();
+        HistoryService historyService = processEngine.getHistoryService();
+        logger.info("已经完成流程实例数量："+String.valueOf(historyService.createHistoricActivityInstanceQuery().finished().count()));*/
+
         //
         logger.info("end");
 
@@ -91,13 +94,16 @@ public class test {
     }
 
     private static ProcessInstance getProcessInstance(ProcessEngine processEngine, ProcessDefinition processDefinition) {
+
         RuntimeService runtimeService = processEngine.getRuntimeService();
+        //返回实例
         ProcessInstance processInstance = runtimeService.startProcessInstanceById(processDefinition.getId());
         logger.info("启动流程：{}",processInstance.getProcessDefinitionKey());
         return processInstance;
     }
 
     private static ProcessDefinition getProcessDefinition(ProcessEngine processEngine) {
+        //获取repositoryService
         RepositoryService repositoryService = processEngine.getRepositoryService();
         DeploymentBuilder deploymentBuilder = repositoryService.createDeployment();
         deploymentBuilder.addClasspathResource("BPMN/second_approve.bpmn20.xml");
@@ -111,6 +117,10 @@ public class test {
     }
 
     private static ProcessEngine getProcessEngine() {
+
+        //创建流程引擎，使用内存数据库
+        //创建H2内存流程引擎实例
+        //默认连接jdbc:h2:mem:activiti
         ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration();
         ProcessEngine processEngine = cfg.buildProcessEngine();
         String name =  processEngine.getName();

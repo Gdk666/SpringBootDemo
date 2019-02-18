@@ -30,6 +30,19 @@ spring:
         min-idle: 0
   session:
       store-type: redis
+  dubbo:
+      application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+        name: Consumer
+      registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+        address: zookeeper://127.0.0.1:2181
+      protocol:     #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+        name: dubbo
+        port: 20880
+      scan: com.Guoz.Dubbo.Service  #服务暴露与发现消费所在的package
+      monitor:
+        protocol: registry
+
+
 
 #    cluster:
 #      nodes:

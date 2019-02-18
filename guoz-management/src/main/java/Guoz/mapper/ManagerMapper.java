@@ -38,4 +38,6 @@ public interface ManagerMapper extends BaseMapper<Manager> {
 
     void updateBch(List<Manager> list);
 
+    List<ManagerDto>  Managerlist();
+
 }

@@ -1,5 +1,7 @@
 package Guoz.controller.sys;
 
+import com.Guoz.Dubbo.Service.RemoteService;
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.guoz.framework.commons.Exception.BattcnException;
@@ -61,7 +63,6 @@ public class ManagerController extends BaseController {
     private TaskService taskService;
 
 
-
     @Autowired
     public ManagerController(ManagerService managerService, RoleService roleService) {
         this.managerService = managerService;
@@ -119,7 +120,6 @@ public class ManagerController extends BaseController {
         mav.addObject("author",manager);
         request.getSession().setAttribute("manager",manager);
         redisTemplate.opsForValue().set("h2", "123-123".split("-")[0]);
-
         return "hello";
     }
 

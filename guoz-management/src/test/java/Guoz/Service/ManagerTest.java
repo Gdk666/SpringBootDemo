@@ -3,11 +3,15 @@ package Guoz.Service;
 
 
 
+import com.Guoz.Dubbo.Service.RemoteService;
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -23,23 +27,29 @@ import Guoz.pojo.po.Manager;
 import Guoz.service.ManagerService;
 import Guoz.service.rabbitService.RabbitService;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Results;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)//提供虚拟环境随机端口
+@ComponentScan("com.Guoz.Dubbo.Service")
 public class ManagerTest extends BaseController {
     @Autowired
     private ManagerService managerService;
 
     @Autowired
     private ManagerMapper managerMapper;
+
+    @Reference(version = "1.0.0",group = "bb")
+    private RemoteService remoteservice;
 
     @Autowired
     private DataSource dataSource;
@@ -99,6 +109,13 @@ public class ManagerTest extends BaseController {
         selectProcessorBo selectProcessorBo = new selectProcessorBo();
         selectProcessorBo.setRuleCode(1);
         context11.contextIface(selectProcessorBo);
+    }
+
+    @Test
+    public void aa(){
+        String aaa = remoteservice.sayHello("nice!");
+        logger.info(aaa);
+        logger.info(aaa);
     }
 
 }

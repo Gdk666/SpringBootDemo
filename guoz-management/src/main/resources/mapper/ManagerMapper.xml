@@ -37,6 +37,8 @@
         </where>
 	</update>
 
-
+	<select id="Managerlist" resultType="Guoz.pojo.dto.ManagerDto">
+		SELECT * FROM t_sys_manager
+	</select>
 
 </mapper>
