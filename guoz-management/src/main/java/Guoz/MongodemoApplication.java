@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 //禁止加载自身对DataSource的扫描DataSourceAutoConfiguration
@@ -23,7 +24,8 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 @ComponentScan("Guoz")
 @EnableCaching
 @ServletComponentScan
-@EnableDubboConfiguration
+//@EnableDubboConfiguration
+@ImportResource(value = {"classpath:application-consumer.xml"})
 public class MongodemoApplication {
 	public static Logger logger = LoggerFactory.getLogger(MongodemoApplication.class);
 

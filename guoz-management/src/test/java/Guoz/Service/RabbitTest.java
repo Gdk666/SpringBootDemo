@@ -4,6 +4,8 @@ package Guoz.Service;
 import Guoz.config.DistributeRedisLock;
 import Guoz.config.RabbitMQ.HelloReceiver;
 import Guoz.controller.BaseController;
+import Guoz.kafka.consumer.kafkaReceiver;
+import Guoz.kafka.provider.kafkaSender;
 import Guoz.service.rabbitService.RabbitService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,11 +24,25 @@ public class RabbitTest extends BaseController {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private kafkaSender kafkaSender;
+
+    @Autowired
+    private kafkaReceiver kafkaReceiver;
+
     @Test
     public void test(){
         String key = "hx123";
         DistributeRedisLock.acq(key);
-        DistributeRedisLock.rele(key);
+        //DistributeRedisLock.rele(key);
+    }
+
+    @Test
+    public void kafkaTest(){
+        logger.info("start");
+        kafkaSender.send("hello kafka!");
+        logger.info("sendEnd");
+
     }
 
 }

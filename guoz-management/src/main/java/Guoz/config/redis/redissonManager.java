@@ -1,4 +1,4 @@
-package Guoz.config;
+package Guoz.config.redis;
 
 import java.io.IOException;
 import java.io.Serializable;

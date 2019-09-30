@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import org.activiti.engine.*;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.form.TaskFormData;
+import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.engine.impl.form.DateFormType;
 import org.activiti.engine.impl.form.StringFormType;
 import org.activiti.engine.repository.Deployment;
@@ -11,8 +12,12 @@ import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,9 +32,14 @@ import java.util.Scanner;
  * @Version 1.0
  * @author: Guoz
  **/
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)//提供虚拟环境随机端口
+
 public class test {
     private static Logger logger = LoggerFactory.getLogger(test.class);
-    public static void main(String[] args) throws ParseException{
+
+    @Test
+    public  void main() throws ParseException{
         logger.info("start");
         //创建流程引擎
         ProcessEngine processEngine = getProcessEngine();
@@ -39,7 +49,7 @@ public class test {
         final ProcessInstance[] processInstance = {getProcessInstance(processEngine, processDefinition)};
         //处理流程任务
         Scanner scanner = new Scanner(System.in);
-
+        //
         TaskService taskService = processEngine.getTaskService();
         List<Task> list = taskService.createTaskQuery().list();
         logger.info("待处理任务数量：{}",list.size());
@@ -128,5 +138,10 @@ public class test {
         logger.info("流程引擎名称:{}，版本:{}",name,version);
         logger.info("aaa:{}",cfg);
         return processEngine;
+    }
+
+    @Test
+    public void testConfig2(){
+
     }
 }

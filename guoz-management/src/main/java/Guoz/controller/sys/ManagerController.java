@@ -1,7 +1,5 @@
 package Guoz.controller.sys;
 
-import com.Guoz.Dubbo.Service.RemoteService;
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.guoz.framework.commons.Exception.BattcnException;
@@ -12,8 +10,6 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -33,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import Guoz.controller.BaseController;
+import Guoz.kafka.provider.kafkaSender;
 import Guoz.pojo.dto.ManagerDto;
 import Guoz.pojo.message.ApiResult;
 import Guoz.pojo.po.Manager;
@@ -49,6 +46,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Controller
 @RequestMapping("/sys/manager")
 @Api(value = "用户管理", description = "用户管理", tags = "1.2")
+
 public class ManagerController extends BaseController {
 
     private final ManagerService managerService;
@@ -61,6 +59,8 @@ public class ManagerController extends BaseController {
     private RuntimeService runtimeService;
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private kafkaSender kafkaSender;
 
 
     @Autowired
@@ -120,6 +120,7 @@ public class ManagerController extends BaseController {
         mav.addObject("author",manager);
         request.getSession().setAttribute("manager",manager);
         redisTemplate.opsForValue().set("h2", "123-123".split("-")[0]);
+        kafkaSender.send(manager.getAccount());
         return "hello";
     }
 

@@ -2,13 +2,12 @@ package Guoz.config;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-import java.util.concurrent.TimeUnit;
-
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
-import org.redisson.api.RMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import Guoz.config.redis.redissonManager;
 
 /**
  * TODO

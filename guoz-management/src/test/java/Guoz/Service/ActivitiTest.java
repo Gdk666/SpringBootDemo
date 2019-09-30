@@ -67,8 +67,8 @@ public class ActivitiTest {
     /*@Autowired
     private ManagementService managementService;*/
 
-    /*@Rule
-    public ActivitiRule activitiRule = new ActivitiRule();*/
+    /*@Rule*/
+    public ActivitiRule activitiRule = new ActivitiRule();
 
     @Test
     public void test() throws FileNotFoundException {
@@ -106,7 +106,7 @@ public class ActivitiTest {
             .addClasspathResource("BPMN/second_approve.bpmn20.png")
             .deploy();
         //运行
-        //RuntimeService runtimeService = activitiRule.getRuntimeService();
+        RuntimeService runtimeService = activitiRule.getRuntimeService();
         Map<String, Object> m = new HashMap<>();
         m.put("name", "二级审批");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("secondapprove", m);

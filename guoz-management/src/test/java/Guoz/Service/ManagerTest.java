@@ -48,7 +48,7 @@ public class ManagerTest extends BaseController {
     @Autowired
     private ManagerMapper managerMapper;
 
-    @Reference(version = "1.0.0",group = "bb")
+    @Autowired
     private RemoteService remoteservice;
 
     @Autowired

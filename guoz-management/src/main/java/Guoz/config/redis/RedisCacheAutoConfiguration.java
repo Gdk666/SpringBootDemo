@@ -1,4 +1,4 @@
-package Guoz.config;
+package Guoz.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

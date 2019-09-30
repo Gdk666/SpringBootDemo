@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 通用类,包含了创建时间和修改时间
  *
@@ -19,6 +21,7 @@ public class RecordEntity implements Serializable {
      * 创建时间
      */
     @Column(name = "gmt_create")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date gmtCreate;
 
     /**
